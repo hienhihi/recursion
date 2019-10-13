@@ -4,7 +4,20 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
+var getElementsByClassName = function(className) {
   // your code here
+  let results = [];
+  let body = document.body;
+  var recursiveFind = function(div){
+    if(div.classList && div.classList.contains(className)) {
+      results.push(div);
+    }
+    if (div.childNodes) {
+      for (var i = 0; i < div.childNodes.length; i++) {
+        recursiveFind(div.childNodes[i]);
+      }
+    }
+  };
+  recursiveFind(body);
+  return results;
 };
